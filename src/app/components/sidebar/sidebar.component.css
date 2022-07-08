@@ -1,0 +1,12 @@
+.sidebar {
+  padding: 20px;
+}
+
+.header {
+  border-bottom: .5px solid rgb(220, 219, 219);
+  margin-bottom: 5px;
+}
+
+.header h2 {
+  margin-bottom: 5px;
+}
