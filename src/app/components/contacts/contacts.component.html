@@ -1,0 +1,53 @@
+<div class="contacts">
+  <div class="header">
+    <h2>Contacts List</h2>
+    <p class="counter">
+      <i class="fa-solid fa-address-book"></i>123 <span>Total</span>
+    </p>
+  </div>
+  <div class="wrapper">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Picture</th>
+          <th>FullName</th>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Email</th>
+          <th>Telephone</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts; let i = index" class="contact">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <img src="{{ contact.picture }}" alt="" />
+          </td>
+          <td>{{ contact.fullName }}</td>
+          <td>{{ contact.title }}</td>
+          <td>{{ contact.company }}</td>
+          <td>{{ contact.email }}</td>
+          <td>{{ contact.telephone }}</td>
+          <td>{{ contact.address }}</td>
+          <td>
+            <div class="btns">
+              <button
+                class="info"
+                (click)="navigateToContactDetails(contact.id)"
+              >
+                <i class="fa-solid fa-list-check"></i>
+              </button>
+              <button class="edit"><i class="fa-solid fa-pen"></i></button>
+              <button class="delete">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

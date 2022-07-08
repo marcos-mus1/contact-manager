@@ -1,0 +1,19 @@
+<div class="users">
+  <div class="header">
+    <h2>Users List</h2>
+    <p class="counter">
+      <i class="fa-solid fa-address-book"></i>123 <span>Total</span>
+    </p>
+  </div>
+  <div class="wrapper">
+    <div class="card" *ngFor="let user of users">
+      <img src="{{ user.picture }}" alt="{{ user.fullName }}" />
+      <h4>{{ user.fullName }}</h4>
+      <span>{{ user.email }}</span>
+      <div class="btns">
+        <button (click)="display()">Delete</button>
+        <button (click)="display()">Details</button>
+      </div>
+    </div>
+  </div>
+</div>
