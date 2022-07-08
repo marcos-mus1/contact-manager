@@ -14,6 +14,8 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
 
+import { DataTablesModule } from 'angular-datatables';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +28,10 @@ import { NewUserComponent } from './components/new-user/new-user.component';
     NewContactComponent,
     ContactDetailsComponent,
     EditContactComponent,
-    NewUserComponent
+    NewUserComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, DataTablesModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
