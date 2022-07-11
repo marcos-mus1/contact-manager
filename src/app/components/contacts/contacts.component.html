@@ -20,15 +20,16 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+
+      <tbody *ngIf="!isLoading">
         <tr *ngFor="let contact of contacts; let i = index" class="contact">
           <td>{{ i + 1 }}</td>
           <td>
-            <img src="{{ contact.picture }}" alt="" />
+            <img src="https://rentkh.com/assets/avatar.jpeg" alt="" />
           </td>
-          <td>{{ contact.fullName }}</td>
-          <td>{{ contact.title }}</td>
-          <td>{{ contact.company }}</td>
+          <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+          <td>{{ contact.position }}</td>
+          <td>{{ contact.entreprise }}</td>
           <td>{{ contact.email }}</td>
           <td>{{ contact.telephone }}</td>
           <td>{{ contact.address }}</td>
@@ -36,18 +37,24 @@
             <div class="btns">
               <button
                 class="info"
-                (click)="navigateToContactDetails(contact.id)"
+                (click)="navigateToContactDetails(contact.id!, 'details')"
               >
                 <i class="fa-solid fa-list-check"></i>
               </button>
-              <button class="edit"><i class="fa-solid fa-pen"></i></button>
-              <button class="delete">
+              <button
+                class="edit"
+                (click)="navigateToContactDetails(contact.id!, 'edit')"
+              >
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="delete" (click)="deleteContact(contact.id!)">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
           </td>
         </tr>
       </tbody>
+      <!-- <p *ngIf="isLoading">Loading...</p> -->
     </table>
   </div>
 </div>

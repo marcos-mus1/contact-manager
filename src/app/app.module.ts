@@ -15,6 +15,8 @@ import { EditContactComponent } from './components/edit-contact/edit-contact.com
 import { NewUserComponent } from './components/new-user/new-user.component';
 
 import { DataTablesModule } from 'angular-datatables';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,13 @@ import { DataTablesModule } from 'angular-datatables';
     EditContactComponent,
     NewUserComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, DataTablesModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DataTablesModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

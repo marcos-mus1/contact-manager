@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IContact } from 'src/app/models';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-contacts',
@@ -8,133 +9,13 @@ import { IContact } from 'src/app/models';
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
-  contacts: IContact[] = [
-    {
-      id: '123',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'Smith Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '13',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '23',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-    {
-      id: '913',
-      address: 'Kinshasa',
-      email: 'marcos@gmail.com',
-      company: 'Zoro innovate',
-      picture:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFH5K1IjoBBbngXsAaKc7dam_eZPOKstYvy9rSpPWiDS3AZXaVCXjMJw1E3wQfuzy4y8&usqp=CAU',
-      fullName: 'John Doe Doe',
-      telephone: '0993837363',
-      title: 'Software Engineer',
-    },
-  ];
+  isLoading: boolean = false;
+  contacts: IContact[] = [];
+  errorMessage: string = '';
 
   dtOptions: DataTables.Settings = {};
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private contactService: ContactService) {}
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -142,9 +23,31 @@ export class ContactsComponent implements OnInit {
       pageLength: 5,
       processing: true,
     };
+
+    this.getContacts();
   }
 
-  navigateToContactDetails(id: string): void {
-    this.router.navigate(['contacts/details/' + id]);
+  getContacts() {
+    this.isLoading = true;
+    return this.contactService.getContacts().subscribe(
+      (contacts: IContact[]) => {
+        this.contacts = contacts;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.errorMessage = error;
+        this.isLoading = false;
+      }
+    );
+  }
+
+  deleteContact(id: number) {
+    return this.contactService.deleteContact(id).subscribe(() => {
+      this.getContacts();
+    });
+  }
+
+  navigateToContactDetails(id: number, path: string): void {
+    this.router.navigate([`contacts/${path}/` + id]);
   }
 }

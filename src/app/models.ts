@@ -1,10 +1,10 @@
 export interface IContact {
-  id: string;
-  fullName: string;
-  company: string;
-  telephone: string;
-  picture: string;
+  id?: number;
+  firstName: string;
+  lastName: string;
   email: string;
+  telephone: string;
+  position: string;
+  entreprise: string;
   address: string;
-  title: string;
 }
