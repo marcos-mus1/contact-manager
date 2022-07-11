@@ -1,1 +1,103 @@
-<p>new-contact works!</p>
+<div class="contact">
+  <div class="header">
+    <h2>Add a new Contact</h2>
+    <span>To add a new contact, plase provide the required information!</span>
+  </div>
+  <div class="content">
+    <form
+      [formGroup]="registrationForm"
+      (ngSubmit)="onSubmit()"
+      #localForm="ngForm"
+    >
+      <div class="input-field">
+        <input
+          type="text"
+          id="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('firstName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">First Name is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="text"
+          id="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('lastName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Last Name is required</div>
+      </div>
+
+      <div class="input-field">
+        <input
+          type="text"
+          id="telephone"
+          placeholder="Telephone"
+          formControlName="telephone"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('telephone')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Telephone is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('email')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Email is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="text"
+          id="entreprise"
+          placeholder="Entreprise"
+          formControlName="entreprise"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('entreprise')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Company is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="text"
+          id="position"
+          placeholder="Title"
+          formControlName="position"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('position')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Position is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="text"
+          id="address"
+          placeholder="Address"
+          formControlName="address"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('address')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Address is required</div>
+      </div>
+      <div class="btns">
+        <button type="submit">Register</button>
+        <button type="cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
