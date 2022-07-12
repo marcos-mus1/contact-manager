@@ -8,3 +8,11 @@ export interface IContact {
   entreprise: string;
   address: string;
 }
+
+export interface IUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  profile: string;
+}

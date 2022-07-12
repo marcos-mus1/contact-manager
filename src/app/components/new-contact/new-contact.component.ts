@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IContact } from 'src/app/models';
+import {  IContact } from 'src/app/models';
 import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
@@ -43,8 +43,7 @@ export class NewContactComponent implements OnInit {
   onSubmit() {
     if (this.registrationForm.valid) {
       this.contact = this.registrationForm.value;
-      console.log(this.contact);
-      return this.contactService.createContact(this.registrationForm.value);
+      return this.contactService.createContact(this.contact).subscribe();
     } else {
       console.log('Invalid');
       return;

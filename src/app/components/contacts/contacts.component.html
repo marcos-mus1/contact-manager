@@ -10,7 +10,6 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Picture</th>
           <th>FullName</th>
           <th>Title</th>
           <th>Company</th>
@@ -24,9 +23,6 @@
       <tbody *ngIf="!isLoading">
         <tr *ngFor="let contact of contacts; let i = index" class="contact">
           <td>{{ i + 1 }}</td>
-          <td>
-            <img src="https://rentkh.com/assets/avatar.jpeg" alt="" />
-          </td>
           <td>{{ contact.firstName }} {{ contact.lastName }}</td>
           <td>{{ contact.position }}</td>
           <td>{{ contact.entreprise }}</td>

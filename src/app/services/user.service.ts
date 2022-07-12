@@ -1,42 +1,42 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
-import { IContact } from '../models';
+import { IUser } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ContactService {
+export class UserService {
   constructor(private http: HttpClient) {}
 
-  createContact(contact: IContact): Observable<IContact> {
+  createUser(contact: IUser): Observable<IUser> {
     return this.http
-      .post<IContact>(`${env.BASE_URL}/contacts`, contact)
+      .post<IUser>(`${env.BASE_URL}/users`, contact)
       .pipe(catchError(this.hangleError));
   }
 
-  getContacts(): Observable<IContact[]> {
+  getUsers(): Observable<IUser[]> {
     return this.http
-      .get<IContact[]>(`${env.BASE_URL}/contacts`)
+      .get<IUser[]>(`${env.BASE_URL}/users`)
       .pipe(catchError(this.hangleError));
   }
 
-  getContact(id: number): Observable<IContact> {
+  getUser(id: number): Observable<IUser> {
     return this.http
-      .get<IContact>(`${env.BASE_URL}/contacts/${id}`)
+      .get<IUser>(`${env.BASE_URL}/users/${id}`)
       .pipe(catchError(this.hangleError));
   }
 
-  updateContat(id: number, contact: IContact): Observable<IContact> {
+  updateUser(id: number, user: IUser): Observable<IUser> {
     return this.http
-      .patch<IContact>(`${env.BASE_URL}/contacts/${id}`, contact)
+      .patch<IUser>(`${env.BASE_URL}/users/${id}`, user)
       .pipe(catchError(this.hangleError));
   }
 
-  deleteContact(id: number): Observable<{}> {
+  deleteUser(id: number): Observable<{}> {
     return this.http
-      .delete<{}>(`${env.BASE_URL}/contacts/${id}`)
+      .delete<{}>(`${env.BASE_URL}/users/${id}`)
       .pipe(catchError(this.hangleError));
   }
 
