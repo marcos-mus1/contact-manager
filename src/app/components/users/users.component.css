@@ -5,6 +5,9 @@
 .header {
   margin: 10px 0px;
   border-bottom: 1px solid rgb(232, 232, 232);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header h2 {
@@ -19,6 +22,16 @@
 
 .counter i {
   margin-right: 10px
+}
+
+.btn {
+  margin: 10px 0px;
+  background-color: indigo;
+  color: white;
+
+  display: grid;
+  place-items: center;
+  padding: 5px;
 }
 
 .wrapper {

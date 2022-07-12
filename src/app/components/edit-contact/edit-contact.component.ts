@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IContact } from 'src/app/models';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -16,7 +16,8 @@ export class EditContactComponent implements OnInit {
   constructor(
     private contactService: ContactService,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,9 +43,12 @@ export class EditContactComponent implements OnInit {
 
   onSubmit() {
     if (this.editForm.valid) {
-      this.contactService.updateContat(this.contactId, this.editForm.value);
+      return this.contactService
+        .updateContat(this.contactId, this.editForm.value)
+        .subscribe(() => {
+          this.router.navigate(['contacts']);
+        });
     } else {
-      console.log('Invalid');
       return;
     }
   }

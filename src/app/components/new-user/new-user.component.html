@@ -1,1 +1,67 @@
-<p>new-user works!</p>
+<div class="user">
+  <div class="header">
+    <h2>Add a new User</h2>
+    <span>To add a new <i class="fa fa-user"></i>, plase provide the required information!</span>
+  </div>
+  <div class="content">
+    <form
+      [formGroup]="registrationForm"
+      (ngSubmit)="onSubmit()"
+      #localForm="ngForm"
+    >
+      <div class="input-field">
+        <input
+          type="text"
+          id="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('firstName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">First Name is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="text"
+          id="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('lastName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Last Name is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('email')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Email is required</div>
+      </div>
+     
+      <div class="input-field">
+        <input
+          type="text"
+          id="profile"
+          placeholder="Photo Url"
+          formControlName="profile"
+          [class.is-invalid]="
+            localForm.submitted && registrationForm.get('profile')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Photo Url is required</div>
+      </div>
+      <div class="btns">
+        <button type="submit">Register</button>
+        <button type="reset">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
