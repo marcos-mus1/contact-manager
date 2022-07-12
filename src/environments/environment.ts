@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'http://localhost:8800/api',
+  BASE_URL: 'https://zoro-innovate-cms.herokuapp.com/api',
 };
 
 /*
