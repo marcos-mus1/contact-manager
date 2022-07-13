@@ -10,13 +10,13 @@ import { UsersComponent } from './components/users/users.component';
 import { LoginComponent } from './components/login/login.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NewContactComponent } from './components/new-contact/new-contact.component';
-import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
 
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SettingsComponent,
     NewContactComponent,
-    ContactDetailsComponent,
     EditContactComponent,
     NewUserComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,

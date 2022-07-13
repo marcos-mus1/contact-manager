@@ -33,7 +33,14 @@ export class UsersComponent implements OnInit {
     );
   }
 
-  display() {
-    console.log('Click');
+  deleteUser(id: number) {
+    return this.userService.deleteUser(id).subscribe(() => {
+      this.getUsers();
+    });
   }
+
+  navigateToUserDetails(id: number): void {
+    this.router.navigate([`users/details/` + id]);
+  }
+
 }

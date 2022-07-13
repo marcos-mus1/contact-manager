@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {  IContact } from 'src/app/models';
+import { Router } from '@angular/router';
+import { IContact } from 'src/app/models';
 import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class NewContactComponent implements OnInit {
 
   constructor(
     private contactService: ContactService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +45,9 @@ export class NewContactComponent implements OnInit {
   onSubmit() {
     if (this.registrationForm.valid) {
       this.contact = this.registrationForm.value;
-      return this.contactService.createContact(this.contact).subscribe();
+      return this.contactService.createContact(this.contact).subscribe(() => {
+        this.router.navigate(['contacts']);
+      });
     } else {
       console.log('Invalid');
       return;

@@ -47,7 +47,7 @@ export class ContactsComponent implements OnInit {
     });
   }
 
-  navigateToContactDetails(id: number, path: string): void {
-    this.router.navigate([`contacts/${path}/` + id]);
+  navigateToContactEdit(id: number): void {
+    this.router.navigate([`contacts/edit/` + id]);
   }
 }

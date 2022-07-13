@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewContactComponent } from './components/new-contact/new-contact.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
@@ -15,10 +15,6 @@ const routes: Routes = [
     component: ContactsComponent,
   },
 
-  {
-    path: 'contacts/details/:id',
-    component: ContactDetailsComponent,
-  },
   {
     path: 'contacts/edit/:id',
     component: EditContactComponent,
@@ -35,6 +31,10 @@ const routes: Routes = [
   {
     path: 'users/new-user',
     component: NewUserComponent,
+  },
+  {
+    path: 'users/details/:id',
+    component: UserDetailComponent,
   },
   {
     path: 'settings',
