@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { IUser } from 'src/app/models';
 import { UserService } from 'src/app/services/user.service';
 
@@ -33,19 +34,37 @@ export class NewUserComponent implements OnInit {
         password: this.fb.control('123456', Validators.required),
         profile: this.fb.control('', Validators.required),
       },
-      { updateOn: 'submit' }
+      { updateOn: 'blur' }
     );
+
+    const draft = localStorage.getItem('REGISTER_USER');
+
+    if (draft) {
+      this.registrationForm.setValue(JSON.parse(draft));
+    }
+
+    this.registrationForm.valueChanges
+      .pipe(filter(() => this.registrationForm.valid))
+      .subscribe((val) =>
+        localStorage.setItem('REGISTER_USER', JSON.stringify(val))
+      );
   }
 
   onSubmit() {
     if (this.registrationForm.valid) {
       this.user = this.registrationForm.value;
       return this.userService.createUser(this.user).subscribe(() => {
+        localStorage.removeItem('REGISTER_USER');
         this.router.navigate(['users']);
       });
     } else {
       console.log('Invalid');
       return;
     }
+  }
+
+  resetForm() {
+    localStorage.removeItem('REGISTER_USER');
+    return this.registrationForm.reset();
   }
 }

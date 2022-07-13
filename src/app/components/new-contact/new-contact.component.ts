@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { IContact } from 'src/app/models';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -38,19 +39,37 @@ export class NewContactComponent implements OnInit {
         address: this.fb.control('', Validators.required),
         position: this.fb.control('', Validators.required),
       },
-      { updateOn: 'submit' }
+      { updateOn: 'blur' }
     );
+
+    const draft = localStorage.getItem('REGISTER_CONTACT');
+
+    if (draft) {
+      this.registrationForm.setValue(JSON.parse(draft));
+    }
+
+    this.registrationForm.valueChanges
+      .pipe(filter(() => this.registrationForm.valid))
+      .subscribe((val) =>
+        localStorage.setItem('REGISTER_CONTACT', JSON.stringify(val))
+      );
   }
 
   onSubmit() {
     if (this.registrationForm.valid) {
       this.contact = this.registrationForm.value;
       return this.contactService.createContact(this.contact).subscribe(() => {
+        localStorage.removeItem('REGISTER_CONTACT');
         this.router.navigate(['contacts']);
       });
     } else {
       console.log('Invalid');
       return;
     }
+  }
+
+  resetForm() {
+    localStorage.removeItem('REGISTER_CONTACT');
+    return this.registrationForm.reset();
   }
 }
