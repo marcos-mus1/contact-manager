@@ -1,0 +1,78 @@
+<div class="user">
+  <div class="header">
+    <h2>User Information</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="!isEditing" class="card">
+      <img src="{{ user.profile }}" alt="{{ user.firstName }}" />
+      <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+      <p>{{ user.email }}</p>
+      <div class="btns">
+        <button (click)="deleteUser(user.id!)">Delete</button>
+        <button (click)="toggleEdit()">Edit</button>
+      </div>
+    </div>
+    <form
+      *ngIf="isEditing"
+      [formGroup]="editForm"
+      (ngSubmit)="onSubmit()"
+      #localForm="ngForm"
+    >
+      <div class="input-field">
+        <input
+          type="text"
+          id="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('firstName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">First Name is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="text"
+          id="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('lastName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Last Name is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          readonly
+          type="email"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('email')?.invalid
+          "
+          readonly="true"
+        />
+        <div class="invalid-feedback">Email is required</div>
+      </div>
+
+      <div class="input-field">
+        <input
+          type="text"
+          id="profile"
+          placeholder="Photo Url"
+          formControlName="profile"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('profile')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Photo Url is required</div>
+      </div>
+      <div class="btns">
+        <button type="submit">Save Changes</button>
+        <button (click)="toggleEdit()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

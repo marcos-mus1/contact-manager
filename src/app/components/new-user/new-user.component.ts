@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IUser } from 'src/app/models';
 import { UserService } from 'src/app/services/user.service';
 
@@ -17,7 +18,11 @@ export class NewUserComponent implements OnInit {
     password: '',
     profile: '',
   };
-  constructor(private userService: UserService, private fb: FormBuilder) {}
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.registrationForm = new FormGroup(
@@ -35,7 +40,9 @@ export class NewUserComponent implements OnInit {
   onSubmit() {
     if (this.registrationForm.valid) {
       this.user = this.registrationForm.value;
-      return this.userService.createUser(this.user).subscribe();
+      return this.userService.createUser(this.user).subscribe(() => {
+        this.router.navigate(['users']);
+      });
     } else {
       console.log('Invalid');
       return;

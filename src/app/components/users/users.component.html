@@ -3,7 +3,8 @@
     <div>
       <h2>Users List</h2>
       <p class="counter">
-        <i class="fa-solid fa-address-book"></i>123 <span>Total</span>
+        <i class="fa-solid fa-address-book"></i>{{ users.length }}
+        <span>Total</span>
       </p>
     </div>
     <div class="btn">
@@ -17,8 +18,8 @@
       <h4>{{ user.firstName }} {{ user.lastName }}</h4>
       <span>{{ user.email }}</span>
       <div class="btns">
-        <button (click)="display()">Delete</button>
-        <button (click)="display()">Details</button>
+        <button (click)="deleteUser(user.id!)">Delete</button>
+        <button (click)="navigateToUserDetails(user.id!)">Details</button>
       </div>
     </div>
   </div>
