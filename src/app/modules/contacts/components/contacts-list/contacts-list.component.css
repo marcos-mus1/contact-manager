@@ -1,0 +1,92 @@
+.contacts {
+  padding: 5px 10vw;
+  position: relative;
+}
+
+.header {
+  width: calc(100% - 20vw);
+  margin: 10px 0px;
+  border-bottom: 1px solid rgb(232, 232, 232);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 70px;
+  z-index: 2
+}
+
+.header h2 {
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.counter {
+  margin-bottom: 5px;
+}
+
+.counter i {
+  margin-right: 10px
+}
+
+.btn {
+  margin: 10px 0px;
+  background-color: indigo;
+  color: white;
+
+  display: grid;
+  place-items: center;
+  padding: 5px;
+}
+
+.wrapper {
+  margin-top: 80px
+}
+
+.wrapper img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contact {
+  cursor: pointer;
+}
+
+.btns {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px
+}
+
+.btns button {
+  border: none;
+  padding: 5px;
+  display: grid;
+  place-items: center;
+}
+
+.info {
+  background-color: rgb(33, 136, 54);
+  color: white;
+  font-size: 13px;
+}
+
+.edit {
+  background-color: rgb(35, 74, 134);
+  color: white;
+  font-size: 13px;
+}
+
+.delete {
+  background-color: rgb(152, 65, 22);
+  color: white;
+  font-size: 13px;
+}

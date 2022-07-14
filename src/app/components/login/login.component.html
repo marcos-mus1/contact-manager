@@ -11,12 +11,21 @@
   <div class="right">
     <h3>Get Connected!</h3>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #localForm="ngForm">
       <div class="input-field">
-        <input type="email" placeholder="Email" />
+        <input type="email" placeholder="Email" formControlName="email" [class.is-invalid]="
+            localForm.submitted && loginForm.get('email')?.invalid
+          " />
+          <div class="invalid-feedback">Email is required</div>
       </div>
       <div class="input-field">
-        <input type="password" placeholder="Password" />
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"[class.is-invalid]="
+            localForm.submitted && loginForm.get('password')?.invalid
+          " />
+          <div class="invalid-feedback">Password is required</div>
       </div>
       <div class="remember">
         <label> <input type="checkbox" /> Remember Me </label>

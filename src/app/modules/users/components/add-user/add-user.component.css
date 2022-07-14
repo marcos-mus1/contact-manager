@@ -1,0 +1,55 @@
+.user {
+  padding: 5px 10vw;
+}
+
+.header {
+  border-bottom: 0.5px solid #eee;
+  color: #333
+}
+
+.header span {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.content {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.input-field {
+  margin-bottom: 7px;
+  padding: 3px 10px;
+}
+
+.input-field input {
+  border: 1px solid lightgrey;
+  padding: 7px 10px;
+  outline: none;
+  width: 100%;
+}
+
+.btns {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  gap: 20px
+}
+
+.btns button {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.btns button:first-child {
+  background-color: indigo;
+  color: white
+}
+
+.btns button:last-child {
+  background-color: red;
+  color: white
+}
