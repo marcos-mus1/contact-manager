@@ -1,0 +1,26 @@
+<div class="users">
+  <div class="header">
+    <div>
+      <h2>Users List</h2>
+      <p class="counter">
+        <i class="fa-solid fa-address-book"></i>{{ users.length }}
+        <span>Total</span>
+      </p>
+    </div>
+    <div class="btn">
+      <a routerLink="../new-user">Add New <i class="fa-solid fa-plus"></i></a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <h2 *ngIf="isLoading">Loading...</h2>
+    <div class="card" *ngFor="let user of users">
+      <img src="{{ user.profile }}" alt="{{ user.firstName }}" />
+      <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+      <span>{{ user.email }}</span>
+      <div class="btns">
+        <button (click)="deleteUser(user.id!)">Delete</button>
+        <button (click)="navigateToUserDetails(user.id!)">Details</button>
+      </div>
+    </div>
+  </div>
+</div>
