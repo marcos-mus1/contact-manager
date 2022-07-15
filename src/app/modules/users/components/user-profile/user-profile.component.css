@@ -38,10 +38,12 @@
 .input-field {
   margin-bottom: 7px;
   padding: 3px 10px;
+
 }
 
 .input-field input {
   border: 1px solid lightgrey;
+  background-color: white;
   padding: 7px 10px;
   outline: none;
   width: 100%;

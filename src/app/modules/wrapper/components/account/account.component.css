@@ -1,0 +1,10 @@
+.account {
+  width: calc(100% - 20vw);
+  height: 82vh;
+  margin: auto;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
