@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/models';
 import { UserService } from 'src/app/services/user.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-users-list',
@@ -12,6 +13,8 @@ export class UsersListComponent implements OnInit {
   isLoading: boolean = false;
   users: IUser[] = [];
   errorMessage: string = '';
+  token: string = localStorage.getItem('access_token') || '';
+  decoded: any = jwt_decode(this.token);
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -23,7 +26,7 @@ export class UsersListComponent implements OnInit {
     this.isLoading = true;
     return this.userService.getUsers().subscribe(
       (users: IUser[]) => {
-        this.users = users;
+        this.users = users.filter((user) => user.id !== this.decoded.sub);
         this.isLoading = false;
       },
       (error) => {
@@ -40,6 +43,8 @@ export class UsersListComponent implements OnInit {
   }
 
   navigateToUserDetails(id: number): void {
-    this.router.navigate([`wrapper/users/profile/` + id]);
+    this.router.navigate([`wrapper/users/profile/` + id], {
+      skipLocationChange: true,
+    });
   }
 }

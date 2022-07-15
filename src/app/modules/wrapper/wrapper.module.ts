@@ -6,18 +6,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { AccountComponent } from './components/account/account.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     WrapperComponent,
-    AccountComponent
+    AccountComponent,
   ],
-  imports: [
-    CommonModule,
-    WrapperRoutingModule
-  ]
+  imports: [CommonModule, WrapperRoutingModule, HttpClientModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
 })
-export class WrapperModule { }
+export class WrapperModule {}
