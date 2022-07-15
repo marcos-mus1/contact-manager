@@ -6,10 +6,10 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
-
+import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,9 @@ import { DataTablesModule } from 'angular-datatables';
     DataTablesModule,
     HttpClientModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
 })
 export class ContactsModule {}

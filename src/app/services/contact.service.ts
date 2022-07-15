@@ -18,7 +18,7 @@ export class ContactService {
 
   getContacts(): Observable<IContact[]> {
     return this.http
-      .get<IContact[]>(`${env.BASE_URL}/contacts`)
+      .get<IContact[]>(`${env.BASE_URL}/users/user-contacts`)
       .pipe(catchError(this.hangleError));
   }
 

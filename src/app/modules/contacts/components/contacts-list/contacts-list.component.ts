@@ -32,6 +32,7 @@ export class ContactsListComponent implements OnInit {
     return this.contactService.getContacts().subscribe(
       (contacts: IContact[]) => {
         this.contacts = contacts;
+
         this.isLoading = false;
       },
       (error) => {
