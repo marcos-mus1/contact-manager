@@ -7,8 +7,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     UsersRoutingModule,
-    HttpClientModule,
+    HttpClientModule, 
     ReactiveFormsModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
 })
 export class UsersModule {}

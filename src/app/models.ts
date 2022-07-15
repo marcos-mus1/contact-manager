@@ -10,10 +10,15 @@ export interface IContact {
 }
 
 export interface IUser {
-  id?:number,
+  id?: number;
   firstName: string;
   lastName: string;
   email: string;
   password?: string;
   profile: string;
+}
+
+export interface IAuth {
+  email: string;
+  password: string;
 }

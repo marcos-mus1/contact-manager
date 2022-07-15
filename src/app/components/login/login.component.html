@@ -13,24 +13,35 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #localForm="ngForm">
       <div class="input-field">
-        <input type="email" placeholder="Email" formControlName="email" [class.is-invalid]="
+        <input
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+          [class.is-invalid]="
             localForm.submitted && loginForm.get('email')?.invalid
-          " />
-          <div class="invalid-feedback">Email is required</div>
+          "
+        />
+        <div class="invalid-feedback">Email is required</div>
       </div>
       <div class="input-field">
         <input
           type="password"
           placeholder="Password"
-          formControlName="password"[class.is-invalid]="
+          formControlName="password"
+          [class.is-invalid]="
             localForm.submitted && loginForm.get('password')?.invalid
-          " />
-          <div class="invalid-feedback">Password is required</div>
+          "
+        />
+        <div class="invalid-feedback">Password is required</div>
       </div>
       <div class="remember">
         <label> <input type="checkbox" /> Remember Me </label>
       </div>
-      <button type="submit">Login</button>
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? "Connecting..." : "Login" }}
+      </button>
+
+      <p>{{ errorMessage }}</p>
     </form>
     <p class="forgot">Forgot Password?</p>
   </div>

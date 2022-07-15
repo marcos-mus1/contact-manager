@@ -1,19 +1,22 @@
-import { Observable, of, throwError } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment as env } from 'src/environments/environment';
+import { IAuth } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   setToken(token: string): void {
-    localStorage.setItem('token', token);
+    localStorage.setItem('access_token', token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem('access_token');
   }
 
   isLoggedIn() {
@@ -21,15 +24,25 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access_token');
     this.router.navigate(['login']);
   }
 
-  login({ email, password }: any): Observable<any> {
-    if (email === 'admin@gmail.com' && password === 'admin123') {
-      this.setToken('abcdefghijklmnopqrstuvwxyz');
-      return of({ name: 'Marcos Musafiri', email: 'admin@gmail.com' });
+  login(user: IAuth): Observable<any> {
+    return this.http
+      .post<any>(`${env.BASE_URL}/auth/login`, user)
+      .pipe(catchError(this.hangleError));
+  }
+
+  hangleError(error: HttpErrorResponse) {
+    let errorMessage: string = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error : ${error.error.message}`;
+      console.log(error);
+    } else {
+      errorMessage = `Error: ${error.error.message}`;
     }
-    return throwError(new Error('Failed to login'));
+
+    return throwError(errorMessage);
   }
 }

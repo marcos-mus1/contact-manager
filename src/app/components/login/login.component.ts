@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -15,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  isLoading: boolean = false;
+  errorMessage: string = '';
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -36,11 +33,16 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       this.auth.login(this.loginForm.value).subscribe(
         (result) => {
+          this.auth.setToken(result.access_token);
           this.router.navigate(['wrapper']);
+          this.isLoading = false;
         },
-        (err: Error) => {
+        (error) => {
+          this.isLoading = false;
+          this.errorMessage = error;
           return;
         }
       );
