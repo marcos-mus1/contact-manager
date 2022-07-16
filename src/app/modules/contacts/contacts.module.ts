@@ -8,9 +8,8 @@ import { EditContactComponent } from './components/edit-contact/edit-contact.com
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DataTablesModule } from 'angular-datatables';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
-
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     ContactsComponent,
@@ -21,9 +20,9 @@ import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
   imports: [
     CommonModule,
     ContactsRoutingModule,
-    DataTablesModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

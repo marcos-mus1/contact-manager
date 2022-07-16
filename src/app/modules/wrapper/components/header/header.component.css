@@ -21,26 +21,7 @@
   font-weight: bold;
 }
 
-.search {
-  width: 350px;
-  height: 40px;
-  background-color: white;
-  padding: 3px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.search input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-}
-
-.search i {
-  color: indigo;
-}
 
 .menu ul {
   width: 100;

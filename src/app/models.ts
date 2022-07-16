@@ -16,6 +16,8 @@ export interface IUser {
   email: string;
   password?: string;
   profile: string;
+  userType?: number;
+  status?: number;
 }
 
 export interface IAuth {
