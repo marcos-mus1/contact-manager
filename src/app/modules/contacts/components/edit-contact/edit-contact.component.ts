@@ -46,7 +46,7 @@ export class EditContactComponent implements OnInit {
       return this.contactService
         .updateContat(this.contactId, this.editForm.value)
         .subscribe(() => {
-          this.router.navigate(['contacts/list']);
+          this.router.navigate(['wrapper/contacts/list']);
         });
     } else {
       return;

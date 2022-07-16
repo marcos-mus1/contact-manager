@@ -13,17 +13,9 @@ export class ContactsListComponent implements OnInit {
   contacts: IContact[] = [];
   errorMessage: string = '';
 
-  dtOptions: DataTables.Settings = {};
-
   constructor(private router: Router, private contactService: ContactService) {}
 
   ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true,
-    };
-
     this.getContacts();
   }
 

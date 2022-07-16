@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="wrapper">
-    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <table class="content-table">
       <thead>
         <tr>
           <th>#</th>
@@ -27,9 +27,8 @@
           <th>Actions</th>
         </tr>
       </thead>
-
-      <tbody *ngIf="!isLoading">
-        <tr *ngFor="let contact of contacts; let i = index" class="contact">
+      <tbody>
+        <tr *ngFor="let contact of contacts; let i = index" class="active-row">
           <td>{{ i + 1 }}</td>
           <td>{{ contact.firstName }} {{ contact.lastName }}</td>
           <td>{{ contact.position }}</td>
@@ -49,7 +48,6 @@
           </td>
         </tr>
       </tbody>
-      <!-- <p *ngIf="isLoading">Loading...</p> -->
     </table>
   </div>
 </div>

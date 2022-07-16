@@ -1,3 +1,126 @@
 <div class="account">
-  <img src="{{ user.profile }}" />
+  <div class="content">
+    <div *ngIf="!isEditing" class="card">
+      <img src="{{ user.profile }}" alt="{{ user.firstName }}" />
+      <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+      <p>{{ user.email }}</p>
+      <div class="btns">
+        <button (click)="deleteUser(user.id!)">Delete Account</button>
+        <button (click)="toggleEdit()">Edit Profile</button>
+      </div>
+    </div>
+    <form
+      *ngIf="isEditing && !changePassword"
+      [formGroup]="editForm"
+      (ngSubmit)="onSubmit()"
+      #localForm="ngForm"
+    >
+      <div class="input-field">
+        <input
+          type="text"
+          id="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('firstName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">First Name is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="text"
+          id="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('lastName')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Last Name is required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('email')?.invalid
+          "
+          readonly="true"
+        />
+        <div class="invalid-feedback">Email is required</div>
+      </div>
+
+      <div class="input-field">
+        <input
+          type="text"
+          id="profile"
+          placeholder="Photo Url"
+          formControlName="profile"
+          [class.is-invalid]="
+            localForm.submitted && editForm.get('profile')?.invalid
+          "
+        />
+        <div class="invalid-feedback">Photo Url is required</div>
+      </div>
+      <div class="btns">
+        <button type="submit">Save Changes</button>
+        <button (click)="toggleEdit()">Cancel</button>
+      </div>
+      <hr />
+      <h6 (click)="toggleEditPassword()">Change Password</h6>
+    </form>
+    <form
+      *ngIf="changePassword"
+      [formGroup]="passwordForm"
+      (ngSubmit)="onSubmit()"
+      #localForm="ngForm"
+    >
+      <div class="input-field">
+        <input
+          type="password"
+          id="currentPassword"
+          placeholder="Current Password"
+          formControlName="currentPassword"
+          [class.is-invalid]="
+            localForm.submitted && passwordForm.get('currentPassword')?.invalid
+          "
+          *ngIf="changePassword"
+        />
+        <div class="invalid-feedback">Current Password required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="password"
+          id="newPassword"
+          placeholder="New Password"
+          formControlName="newPassword"
+          [class.is-invalid]="
+            localForm.submitted && passwordForm.get('newPassword')?.invalid
+          "
+          *ngIf="changePassword"
+        />
+        <div class="invalid-feedback">Password required</div>
+      </div>
+      <div class="input-field">
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm Password"
+          formControlName="confirmPassword"
+          [class.is-invalid]="
+            localForm.submitted && passwordForm.get('confirmPassword')?.invalid
+          "
+          *ngIf="changePassword"
+        />
+        <div class="invalid-feedback">Confirm Password is required</div>
+      </div>
+      <div class="btns">
+        <button type="submit">Change Password</button>
+        <button (click)="toggleEdit()">Cancel</button>
+      </div>
+    </form>
+  </div>
 </div>

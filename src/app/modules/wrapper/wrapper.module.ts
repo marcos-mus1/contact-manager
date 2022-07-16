@@ -8,6 +8,7 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { AccountComponent } from './components/account/account.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,12 @@ import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
     WrapperComponent,
     AccountComponent,
   ],
-  imports: [CommonModule, WrapperRoutingModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    WrapperRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
