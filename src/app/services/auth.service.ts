@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment as env } from 'src/environments/environment';
 import { IAuth } from '../models';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,35 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
-  isLoggedIn() {
-    return this.getToken() !== null;
+  isLoggedIn(): boolean {
+    let token: string = localStorage.getItem('access_token') || '';
+    if (token === '') {
+      return false;
+    } else {
+      this.http.get(`${env.BASE_URL}/auth/profile`).subscribe((result)=>{
+        if(result){
+          
+        }
+      });
+      const decoded: any = jwt_decode(token);
+      if (decoded.email !== undefined) {
+        return true;
+      }
+      return false;
+    }
+  }
+
+  isAdmin(): boolean {
+    let token: string = localStorage.getItem('access_token') || '';
+    if (token === '') {
+      return false;
+    } else {
+      const decoded: any = jwt_decode(token);
+      if (decoded.role === 1) {
+        return true;
+      }
+      return false;
+    }
   }
 
   logout() {

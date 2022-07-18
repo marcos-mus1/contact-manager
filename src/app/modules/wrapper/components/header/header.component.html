@@ -2,13 +2,13 @@
   <div class="brand">
     <a routerLink="contacts">Zoro Innovate</a>
   </div>
- 
+
   <div class="menu">
     <ul>
       <li>
         <a routerLink="contacts">Contacts</a>
       </li>
-      <li><a routerLink="users">Users</a></li>
+      <li *ngIf="isAdmin"><a routerLink="users">Users</a></li>
       <li><a routerLink="account">Account</a></li>
       <li (click)="logout()">Logout</li>
     </ul>

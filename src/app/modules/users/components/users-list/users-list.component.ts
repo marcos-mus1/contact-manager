@@ -10,6 +10,7 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./users-list.component.css'],
 })
 export class UsersListComponent implements OnInit {
+  searchTerm: string = '';
   isLoading: boolean = false;
   users: IUser[] = [];
   errorMessage: string = '';

@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AddUserComponent implements OnInit {
   registrationForm!: FormGroup;
+  errorMessage: string = '';
   user: IUser = {
     firstName: '',
     lastName: '',
@@ -53,10 +54,18 @@ export class AddUserComponent implements OnInit {
   onSubmit() {
     if (this.registrationForm.valid) {
       this.user = this.registrationForm.value;
-      return this.userService.createUser(this.user).subscribe(() => {
-        localStorage.removeItem('REGISTER_USER');
-        this.router.navigate(['wrapper/users']);
-      });
+      console.log(this.user);
+      return this.userService
+        .createUser({ ...this.user, userType: 2, status: 1 })
+        .subscribe(
+          () => {
+            localStorage.removeItem('REGISTER_USER');
+            this.router.navigate(['wrapper/users']);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
     } else {
       console.log('Invalid');
       return;
