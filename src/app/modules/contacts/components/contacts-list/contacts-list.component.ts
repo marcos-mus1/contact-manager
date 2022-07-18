@@ -9,6 +9,7 @@ import { ContactService } from 'src/app/services/contact.service';
   styleUrls: ['./contacts-list.component.css'],
 })
 export class ContactsListComponent implements OnInit {
+  searchTerm: string = '';
   isLoading: boolean = false;
   contacts: IContact[] = [];
   errorMessage: string = '';

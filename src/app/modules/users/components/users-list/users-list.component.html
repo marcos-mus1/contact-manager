@@ -9,7 +9,11 @@
       </p>
     </div>
     <div class="search">
-      <input type="text" placeholder="Search by Name" />
+      <input
+        type="text"
+        placeholder="Search by Name"
+        [(ngModel)]="searchTerm"
+      />
       <i class="fa fa-search"></i>
     </div>
     <div class="btn">
@@ -18,7 +22,7 @@
   </div>
   <div class="wrapper">
     <h2 *ngIf="isLoading">Loading...</h2>
-    <div class="card" *ngFor="let user of users">
+    <div class="card" *ngFor="let user of users | filter: searchTerm">
       <img src="{{ user.profile }}" alt="{{ user.firstName }}" />
       <h4>{{ user.firstName }} {{ user.lastName }}</h4>
       <span>{{ user.email }}</span>

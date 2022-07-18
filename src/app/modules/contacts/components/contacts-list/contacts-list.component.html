@@ -8,7 +8,7 @@
       </p>
     </div>
     <div class="search">
-      <input type="text" placeholder="Search by Name" />
+      <input type="text" placeholder="Search ..." [(ngModel)]="searchTerm" />
       <i class="fa fa-search"></i>
     </div>
     <div class="btn">
@@ -32,7 +32,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let contact of contacts; let i = index" class="active-row">
+        <tr
+          *ngFor="let contact of contacts | filter: searchTerm; let i = index"
+          class="active-row"
+        >
           <td>{{ i + 1 }}</td>
           <td>{{ contact.firstName }} {{ contact.lastName }}</td>
           <td>{{ contact.position }}</td>
@@ -50,6 +53,10 @@
               </button>
             </div>
           </td>
+        </tr>
+
+        <tr *ngIf="contacts.length == 0">
+          No Contacts avalaible
         </tr>
       </tbody>
     </table>
